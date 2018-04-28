@@ -17,7 +17,7 @@ function download(callback) {
   // (but not more than 4, to keep things from getting too intense)
   //lower this number to make the downloader more CPU friendly
   //raise this number to (possibly) make it faster
-  const simultaneousDownloads = Math.max(4, Math.min(1, os.cpus().length / 2));
+  const simultaneousDownloads = Math.max(2, Math.min(1, os.cpus().length / 2));
 
   // generate a shell command that does the following:
   // 1.) use curl to download the bundle, piping directly to tar (this avoids the
