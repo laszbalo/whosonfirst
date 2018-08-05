@@ -111,7 +111,9 @@ tape('create', function(test) {
 
   });
 
-  test.test('dependency with unknown abbreviation should not set', function(t) {
+  test.test('dependency trusts even invalid WOF alpha3 abbreviation', function(t) {
+    // trust that WOF ISO-3166-1 alpha3 abbreviations are valid, to avoid having to pull in
+    // an ISO-3166-1 library
     var wofRecords = {
       1: {
         id: 1,
@@ -133,7 +135,7 @@ tape('create', function(test) {
       new Document( 'whosonfirst', 'dependency', '1')
         .setName('default', 'record name')
         .setCentroid({ lat: 12.121212, lon: 21.212121 })
-        .addParent( 'dependency', 'record name', '1')
+        .addParent( 'dependency', 'record name', '1', 'XY')
     ];
 
     var hierarchies_finder = function() {
@@ -159,7 +161,7 @@ tape('create', function(test) {
       1: {
         id: 1,
         name: 'record name',
-        abbreviation: 'PR',
+        abbreviation: 'PRI',
         lat: 12.121212,
         lon: 21.212121,
         place_type: 'dependency'
@@ -202,7 +204,7 @@ tape('create', function(test) {
       1: {
         id: 1,
         name: 'record name',
-        abbreviation: 'FR',
+        abbreviation: 'FRA',
         lat: 12.121212,
         lon: 21.212121,
         place_type: 'country'
@@ -356,7 +358,7 @@ tape('create', function(test) {
         lat: 12.121212,
         lon: 21.212121,
         place_type: 'country',
-        abbreviation: 'US',
+        abbreviation: 'USA',
         population: undefined
       }
     };
@@ -399,7 +401,7 @@ tape('create', function(test) {
         lat: 12.121212,
         lon: 21.212121,
         place_type: 'country',
-        abbreviation: 'US',
+        abbreviation: 'USA',
         population: 98765
       }
     };
@@ -443,7 +445,7 @@ tape('create', function(test) {
         lat: 12.121212,
         lon: 21.212121,
         place_type: 'country',
-        abbreviation: 'US',
+        abbreviation: 'USA',
         popularity: undefined
       }
     };
@@ -486,7 +488,7 @@ tape('create', function(test) {
         lat: 12.121212,
         lon: 21.212121,
         place_type: 'country',
-        abbreviation: 'US',
+        abbreviation: 'USA',
         popularity: 87654
       }
     };
